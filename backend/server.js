@@ -6,10 +6,9 @@ import { WORKERS, WORKSTATIONS, generateSampleEvents } from './seed.js';
 
 const app = express();
 // Configure CORS for production
+// Temporarily allowing all origins for testing
 const corsOptions = {
-  origin: process.env.NODE_ENV === 'production' 
-    ? ['https://your-vercel-frontend.vercel.app'] // Add your Vercel domain
-    : '*',
+  origin: '*',
   optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));

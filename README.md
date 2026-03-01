@@ -12,6 +12,12 @@ Cameras → Express API → SQLite
 
 Nothing fancy. Events come in, we store them, we crunch the numbers.
 
+## Live Deployment
+
+Check out the live dashboard: [https://dashboard-frontend-x1vs.vercel.app/]
+
+
+
 ---
 
 ## Quick start
