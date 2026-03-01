@@ -1,0 +1,17 @@
+{
+  "name": "worker-productivity-dashboard",
+  "version": "1.0.0",
+  "description": "AI-Powered Worker Productivity Dashboard",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && node server.js",
+    "client": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "start": "cd backend && node server.js",
+    "seed": "cd backend && node seed.js",
+    "setup": "npm install && cd backend && npm install && cd ../frontend && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

@@ -1,0 +1,12 @@
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+backend/data/
+*.db
+*.sqlite3
+frontend/dist/
+.env
+.env.local
+.idea/
+.vscode/
+.DS_Store
