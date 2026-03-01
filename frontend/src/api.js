@@ -1,11 +1,25 @@
 import axios from 'axios';
 
-const API_BASE = import.meta.env.VITE_API_URL || '';
+// In production, use the backend URL. In development, use the proxy.
+const isProduction = import.meta.env.PROD;
+const API_BASE = isProduction 
+  ? (import.meta.env.VITE_API_URL || 'https://your-render-app.onrender.com') 
+  : '';
 
 const api = axios.create({
   baseURL: API_BASE,
   headers: { 'Content-Type': 'application/json' },
+  timeout: 10000, // 10 second timeout
 });
+
+// Add response interceptor for better error handling
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    console.error('API Error:', error.response?.data || error.message);
+    return Promise.reject(error);
+  }
+);
 
 export async function fetchMetrics(workerId, stationId) {
   const params = {};

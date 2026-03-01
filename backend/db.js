@@ -9,7 +9,8 @@ const __dirname = dirname(__filename);
 const dataDir = join(__dirname, 'data');
 if (!existsSync(dataDir)) mkdirSync(dataDir, { recursive: true });
 
-const dbPath = process.env.SQLITE_PATH || join(dataDir, 'productivity.db');
+// Use Render's /tmp directory for ephemeral storage, or persistent if using Render's disk
+const dbPath = process.env.DATABASE_URL || process.env.SQLITE_PATH || join(dataDir, 'productivity.db');
 const db = new sqlite3.Database(dbPath);
 
 export function initDb() {

@@ -5,7 +5,14 @@ import { db, initDb } from './db.js';
 import { WORKERS, WORKSTATIONS, generateSampleEvents } from './seed.js';
 
 const app = express();
-app.use(cors());
+// Configure CORS for production
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production' 
+    ? ['https://your-vercel-frontend.vercel.app'] // Add your Vercel domain
+    : '*',
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 initDb();
@@ -37,8 +44,14 @@ app.get('/', (req, res) => {
   res.json({ service: 'worker-productivity-api', docs: '/api/docs' });
 });
 
+// Health check for Render
 app.get('/health', (req, res) => {
-  res.json({ status: 'ok' });
+  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+// Render health check
+app.get('/render/health', (req, res) => {
+  res.status(200).json({ status: 'healthy', service: 'worker-productivity-api' });
 });
 
 // single event
