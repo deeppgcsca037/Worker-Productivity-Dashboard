@@ -1,13 +1,5 @@
 # Worker Productivity Dashboard
 
-Factory setup with 6 workers and 6 workstations.
-
-**New to deployment?** See [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) for a step-by-step guide to deploy backend on Render and frontend on Vercel. Cameras send AI-generated events (working, idle, absent, product count) to a backend that stores them and computes metrics. The dashboard shows worker stats, workstation stats, and factory-level summaries.
-
-Built with Node/Express + SQLite on the backend, React + Vite + Tailwind on the frontend.
-
----
-
 ## How it works
 
 Cameras (or whatever sends events) hit the API with JSON. The backend writes to SQLite and computes metrics on the fly. The React app fetches those metrics and displays them.
